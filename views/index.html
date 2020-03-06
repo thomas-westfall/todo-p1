@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Index</title>
+  </head>
+  <body>
+    <form action='/logout' method="GET">
+      <input type="submit" value="Logout"/>
+    </form>
+
+    <form action='/addtask' method="POST">
+      <input type="text" name="content"/>
+      <input type="submit" value="Add Task"/>
+    </form>
+    <h2>Your tasks</h2>
+    <% for(let i=0; i<tasks.length; i++) {%>
+      <% if(tasks[i].deleted) continue%>
+      <tr>
+        <td>ID: <%= tasks[i].id %></td>
+        <td>Content: <%= tasks[i].content %></td>
+        <td>Completed: <%= tasks[i].completed %></td>
+        <td>
+          <form action='/markdone' method="GET">
+            <input type="hidden" name="id" value=<%=tasks[i].id%>/>
+            <input type="submit" value="Mark done"/>
+          </form>
+        </td>
+        <td>
+          <form action='/deletetask' method="GET">
+            <input type="hidden" name="id" value=<%=tasks[i].id%>/>
+            <input type="submit" value="Delete Task"/>
+          </form>
+        </td>
+      </tr>
+      <% } %>
+
+
+
+  </body>
+</html>	
